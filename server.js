@@ -26,18 +26,18 @@ const server = http.createServer((req, res) => {
   // AW: really not sure
   const waictRequested = req.headers["sec-ch-waict"];
 
-  if (waictRequested && waictRequested.includes("1")) {
+  // if (waictRequested && waictRequested.includes("1")) {
     res.setHeader(
       "Sec-WAICT-v1-Enforce",
-      'max-age=60, mode="audit", preload=?0'
+      'max-age=60, mode="audit", preload=?0, manifest=/waict-manifest.json'
     );
 
-    res.setHeader("Sec-WAICT-v1-Manifest", "/waict-manifest.json");
-  }
+    // res.setHeader("Sec-WAICT-v1-Manifest", "/waict-manifest.json");
+  // }
 
-  if (waictRequested && waictRequested.includes("2")) {
-    console.log("Client offered WAICT v2 but server only supports v1");
-  }
+  // if (waictRequested && waictRequested.includes("2")) {
+  //   console.log("Client offered WAICT v2 but server only supports v1");
+  // }
 
   // Prevent path traversal
   if (!filePath.startsWith(PUBLIC_DIR)) {
